@@ -1,0 +1,60 @@
+
+{% extends 'user_detail_base.html' %}
+
+{% block content %}
+{{ block.super }}
+
+
+
+{% endblock %}
+
+
+{% comment %} {% extends 'base.html' %}
+{% load static %} <!-- Load the static template tag -->
+{% block content %} 
+<div class="container mx-auto p-6 flex justify-center  ">
+    
+    <div class="flex mb-4 flex-col mx-auto justify-center items-center">
+        <div class="w-2/3 px-2 py-10">
+            <img src="{% static 'images/profile.jpg' %}" alt="Profile Image" class="rounded-lg max-w-full h-auto">
+        </div>
+        <div class="max-w-lg">
+            <table class="table-fixed border-collapse">
+                <tbody>
+                    <tr>
+                        <td class="w-1/4 px-2"><strong>Username </strong></td>
+                        <td class="w-3/4">: {{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2"><strong>Email</strong></td>
+                        <td>: {{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2"><strong>Full Name</strong></td>
+                        <td>: {{ user.get_full_name }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2"><strong>Position</strong></td>
+                        <td>: {{ user.position }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2"><strong>Department</strong></td>
+                        <td>: {{ user.department }}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2"><strong>Groups</strong></td>
+                        <td>: {{ user_groups }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <form action="{% url 'logout' %}" method="post" class="mt-4">
+            {% csrf_token %}
+            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Log Out
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %} {% endcomment %}

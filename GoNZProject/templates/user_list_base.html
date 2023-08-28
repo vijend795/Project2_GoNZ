@@ -1,0 +1,98 @@
+{% load static %} <!-- Load the static template tag -->
+{% block content %} 
+{% comment %} <a href="/users/agent/{{ agent.id }}" class="flex justify-center items-center content-center">
+    <div class="container max-w-2xl px-6 bg-gray-400 flex justify-center items-center">
+        <div class="flex mb-4 flex-col mx-auto">
+            <div class="max-w-lg flex md:flex-row flex-col ">
+                <div class="flex  w-[300px] px-2 py-2  bg-red-300 justify-center items-center">
+                    <img src="{% static 'images/profile.jpg' %}" alt="Profile Image" class="rounded-lg w-[300px] h-auto">
+                </div>
+                <div class="flex justify-center items-center content-center px-2 py-2" >
+                <table class="table-fixed border-collapse">
+                    <tbody>
+                      <tr>
+                        <td class="px-2"><strong>ID</strong></td>
+                        <td>: {{ agent.id }}</td>
+                    </tr>
+                        <tr>
+                            <td class="w-1/4 px-2"><strong>Username</strong></td>
+                            <td class="w-3/4">: {{ agent.username }}</td>
+                        </tr>
+                        <tr>
+                            <td class="px-2"><strong>Email</strong></td>
+                            <td>: {{ agent.email }}</td>
+                        </tr>
+                        <tr>
+                            <td class="px-2"><strong>Full Name</strong></td>
+                            <td>: {{ agent.get_full_name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="px-2"><strong>Position</strong></td>
+                            <td>: {{ agent.position }}</td>
+                        </tr>
+                        <tr>
+                            <td class="px-2"><strong>Department</strong></td>
+                            <td>: {{ agent.department }}</td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</a> {% endcomment %}
+
+<a href="/users/agent/{{ agent.id }}" class="flex justify-center items-center h-full ">
+    <div class="container max-w-2xl px-6 mb-10 flex justify-center items-center h-full  bg-sky-50 rounded-md pt-3">
+        <div class="flex mb-4 md:flex-row flex-col mx-auto w-full justify-center items-center">
+            <div class="flex w-[200px]  md:w-[300px] px-2 py-2 justify-center items-center">
+                {% if agent.user_image %}
+                    {% comment %} <h1> {{ user.user_image.url }}</h1> {% endcomment %}
+                    <img src="{{ agent.user_image.url }}" alt="Profile Image" class="rounded-lg w-[300px] h-auto">
+                {% else %}
+                <img src="{% static 'images/userImg.avif' %}" alt="Profile Image" class="rounded-lg w-[300px] h-auto">
+                {% endif %}
+            </div>
+            <div class="flex justify-center md:justify-start items-center px-2 py-2 w-full">
+                <table class="table-fixed border-collapse">
+                    <table class="table-fixed border-collapse">
+                        <tbody>
+                          <tr>
+                            <td class="px-2"><strong>ID</strong></td>
+                            <td>: {{ agent.id }}</td>
+                        </tr>
+                            <tr>
+                                <td class="w-1/4 px-2"><strong>Name</strong></td>
+                                <td class="w-3/4">: {{ agent.get_full_name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2"><strong>Email</strong></td>
+                                <td>: {{ agent.email }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2"><strong>Full Name</strong></td>
+                                <td>: {{ agent.get_full_name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2"><strong>Position</strong></td>
+                                <td>: {{ agent.position }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-2"><strong>Department</strong></td>
+                                <td>: {{ agent.department }}</td>
+                            </tr>
+                            <tr class='hidden'>
+                                <td class="px-2"><strong>Tour Posted </strong></td>
+                                <td>: {{ agent.tour_count }}</td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </table>
+            </div>
+        </div>
+    </div>
+</a>
+
+{% endblock %}

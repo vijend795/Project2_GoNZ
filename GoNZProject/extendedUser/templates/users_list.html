@@ -1,0 +1,44 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %} User List{% endblock %}
+{% block content %} 
+<div class='bg-gray-300'>
+    <h1 class='flex justify-center bg-gray-400 my-4 p-2 text-xl font-bold text-white'> Agents list </h1>
+    {% comment %} <h1> Type: {{ type }}</h1>
+    <h1> Logged In User : {{ request.session.logged_in_username }}</h1>
+    <h1> Logged In User Group: {{ request.session.logged_in_user_group }}</h1> {% endcomment %}
+
+    {% for agent in users_list %}
+        {% if agent.department == 'Administrator' %}
+            {# Including the user_list_base.html template for each agent in the 'Administrative' department #}
+            {% with agent=agent %}
+                {% include 'user_list_base.html' %}
+            {% endwith %}
+        {% endif %}
+    {% endfor %}
+
+    {% for agent in users_list %}
+        {% if agent.department == 'Management' %}
+            {# Including the user_list_base.html template for each agent in the 'Administrative' department #}
+            {% with agent=agent %}
+                {% include 'user_list_base.html' %}
+            {% endwith %}
+        {% endif %}
+    {% endfor %}
+
+
+
+    {% for agent in users_list %}
+        {% if agent.department == 'Agent' %}
+            {# Including the user_list_base.html template for each agent in the 'Administrative' department #}
+            {% with agent=agent %}
+                {% include 'user_list_base.html' %}
+            {% endwith %}
+            
+        {% endif %}
+       
+    {% endfor %}
+</div>
+{% endblock %}

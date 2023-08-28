@@ -1,0 +1,83 @@
+{% load static %} <!-- Load the static template tag -->
+{% block content %} 
+
+
+
+<a href="/tours/{{ tour.id }}" class=" flex justify-center items-center h-full w-full place-items-center">
+    <div class='container px-0 max-w-2xl rounded-md mb-10  bg-white'>
+        <div class="bg-white  shadow-md p-4 flex items-center space-x-4 w-full sm:w-auto justify-between h-[50px] rounded-t-md">
+            <div class='flex justify-center items-center gap-2 '>
+                <!--Card Header-->
+                {% if tour.agent.user_image %}
+                    <img src="{{ tour.agent.user_image.url }}" alt="Profile Image" class="w-20 h-20 rounded-full z-10 border-2 border-gray-50 shadow-md -mt-">
+                   
+                {% else %}
+                <img src="{% static 'images/userImg.avif' %}" alt="Profile Image" class="w-20 h-20 rounded-full z-10 border-2 border-gray-50 shadow-md -mt-">
+                {% endif %}
+               
+                <p class="text-lg font-semibold truncate ">{{ tour.agent.get_full_name}}  </p>
+            </div>
+            <div class="flex">   
+                <div class="flex items-center space-x-2">
+                    <i class="far fa-share-square text-green-500 text-xl "></i>
+                    <i class="far fa-thumbs-up text-blue-500 text-xl"></i>
+                </div>
+            
+            </div>
+        </div>
+        <!-- Image Section -->
+        <div class='w-full h-30 '>
+        {% if tour.tour_pictures.all %}
+            
+            <img src="{{ tour.tour_pictures.first.image.url }}"alt="Profile Image" class="w-full h-30 rounded-none">
+        {% else %}
+            <img src="{% static 'images/SampleTourImages/4.jpg' %}" alt="Profile Image" class="w-full h-30 rounded-none">
+        {% endif %}
+        </div> 
+        <div class='flex flex-col px-3 rounded-b-md'>
+            <!-- information Section -->
+           
+        {% comment %} <span class='text-blue-800 font-semibold -mt-7 capitalize bg-blue-50 flex justify-end'>Last udpated :{{tour.start_date}}</span> {% endcomment %}
+        <span class="flex justify-start ">
+            <span class="text-blue-800 font-semibold px-2 py-1 -mt-7 capitalize rounded-md my-2">
+                Last updated: {{ tour.start_date }}
+            </span>
+        </span>
+        <div class='flex justify-between items-center flex-wrap'>
+            <span class='text-black font-bold text-lg capitalize'> Destination {{tour.destination}}</span>
+            <span class='text-black-400 font-bold text-red-500 capitalize text-md'>NZD ${{tour.price}} </span>
+        </div>
+        <span class='text-black font-semibold text-md capitalize'> {{tour.package_type}} | {{tour.title}}</span>
+
+
+        <span class='text-gray-400 font-medium text-sm capitalize h-10 overflow-hidden overflow-ellipsis whitespace-normal'>
+            {{ tour.short_desc|slice:":80" }}
+          </span>
+        
+         <!-- edit and delete button for Agents only who have access to tour data -->
+        
+       
+        {% if tour.agent.id|stringformat:"s" == logged_in_user_id|stringformat:"s" %}
+            <div class='flex justify-between'> 
+                <span class="text-white font-bold bg-sky-400 px-6 rounded-md my-2 hover:underline">Edit</span>
+                <span class="text-white font-bold bg-red-700 px-6 rounded-md my-2 hover:underline">DELETE</span>
+                </div>
+        {% else %}
+        <div class='hidden'>
+            <p>{{ tour.agent.id }} ({{ tour.agent.id|default:"None" }}) = {{ logged_in_user_id }} ({{ logged_in_user_id|default:"None" }})</p>
+            <p>Value not matched</p>
+        </div>
+            
+        {% endif %}
+
+        
+    
+    </div>
+    
+    </div>
+   
+</a>
+
+
+
+{% endblock %}

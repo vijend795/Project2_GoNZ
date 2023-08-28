@@ -1,0 +1,136 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    {% comment %} <link href="{% static 'css/styles.css' %}" rel="stylesheet" /> {% endcomment %}
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        /* Add your CSS styles here */
+    </style>
+   
+    
+    {% tailwind_css %}
+</head>
+<body class='w-screen justify-center items-center content-center'>
+
+    <header>
+        <!-- Add header content here -->
+        <nav class='flex flex-row flex-wrap px-10 bg-[#B2EBF9] justify-between  w-full  items-center'>
+            <a href="/" class="self-center w-[100px] h-[90px]  flex items-center justify-center rounded-lg">
+                <img src="{% static 'images/logo/logo.png' %}" alt="Company Logo" class="max-h-full max-w-full" />
+            </a>
+            <div class="flex-col flex-wrap  justify-center py-5 px-1  items-center">
+                {% comment %} <label for="menu-toggle" class="md:hidden  cursor-pointer  p-1 px-5 rounded-md bg-sky-300  text-xl font-bold "> {% endcomment %}
+                <label for="menu-toggle" class="md:hidden  cursor-pointer text-sm font-bold tracking-wider p-1 px-5 rounded-md bg-sky-300 flex gap-2 items-center hover:bg-blue-400 ">
+                    <i class="block md:hidden fas fa-bars"></i>
+                    Menu
+                </label>
+                <input type="checkbox" id="menu-toggle" class="hidden" />
+                <ul id="menu-item" class='hidden  md:flex absolute self-start md:static  md:flex-row gap-10 flex-col text-xl font-bold justify-center items-center'>
+                    <li class="rounded-md ">
+                        {% comment %} <a href="{% url 'home' %}" class='tracking-wider p-1 px-5 rounded-md bg-sky-300  '>Home</a> {% endcomment %}
+                        <a href="{% url 'home' %}" class='tracking-wider p-1 px-5 rounded-md flex gap-2 items-center {% if request.resolver_match.url_name == 'home' %} bg-blue-500 {% else %} bg-sky-300 {% endif %}'>
+                            <i class="block fas fa-home"></i>
+                            <span class="text-sm md:font-semibold tracking-wider font-bold capitalize " > Home</span>
+                        </a>  
+                    </li>
+                    <li class="rounded-md ">
+                        {% comment %} <a href="{% url 'users-list' %}" class='tracking-wider p-1 px-5 rounded-md bg-sky-300 '>Agents</a> {% endcomment %}
+                        <a href="{% url 'users-list' %}" class='tracking-wider p-1 px-5 rounded-md  flex gap-2 items-center {% if request.resolver_match.url_name == 'users-list' %} bg-blue-500 {% else %} bg-sky-300 {% endif %}'>
+                            <i class="block fas fa-users"></i>
+                            <span class="text-sm md:font-semibold tracking-wider font-bold capitalize " > Agents</span>
+                        </a>  
+                    </li>
+                    <li class="rounded-md ">
+                        {% comment %} <a href="{% url 'tours' %}" class='tracking-wider p-1 px-5 rounded-md bg-sky-300  items-center '>Tours</a> {% endcomment %}
+                        <a href="{% url 'tours' %}" class="tracking-wider p-1 px-5 rounded-md  flex gap-2 items-center {% if request.resolver_match.url_name == 'tours' %} bg-blue-500 {% else %} bg-sky-300 {% endif %}">
+                            <i class="block fas fa-globe"></i>
+                            <span class="text-sm md:font-semibold tracking-wider font-bold capitalize " > Tours</span>
+                        </a>  
+                    </li>
+                    <li >
+                    {% if user.is_authenticated %}  
+                            <a href="{% url 'profile' %}" class='tracking-wider p-1 px-5 rounded-md flex gap-2 items-center {% if request.resolver_match.url_name == 'profile' %} bg-blue-500 {% else %} bg-sky-300 {% endif %}'>
+                                <i class="block fas fa-user"></i>
+                                <span class="text-sm md:font-semibold tracking-wider font-bold capitalize " id="fixed-username"> {{ request.session.logged_in_username }}</span>
+                            </a>  
+                    {% else %}
+
+                            <a href="{% url 'login' %}" class='tracking-wider p-1 px-5 rounded-md bg-sky-300 flex gap-2 items-center'>
+                                <i class="block far fa-user"></i>
+                                <span class="text-sm md:font-semibold tracking-wider font-bold " id="fixed-username">Log in</span>
+                            </a>
+                    {% endif %}
+                </li>
+                </ul>
+               
+            </div>
+        </nav>
+        <script>
+            const menuToggle = document.getElementById('menu-toggle');
+            const menu = document.getElementById('menu-item');
+    
+            menuToggle.addEventListener('change', () => {
+                if (menuToggle.checked) {
+                    menu.style.display = 'block';
+                } else {
+                    menu.style.display = 'none';
+                }
+            });
+        </script>
+    </header>
+    
+
+    <main class='w-full'>
+     
+        <!-- Add main content here -->
+        {% block content %}
+        {% endblock %}
+    </main>
+
+        <!-- Add footer content here -->
+
+    <footer class="bg-gray-800 text-white py-10 px-10 ">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Contact Information -->
+                <div class="md:col-span-1">
+                    <h2 class="text-xl font-semibold mb-4 ">Contact Us</h2>
+                    <p class="text-sm">110 Lambton Quay<br>Wellington, New Zealand 6011</p>
+                    <p class="text-sm">Email: admissions@whitecliffe.ac.nz<br>Phone: 0800 800 300</p>
+                </div>
+                
+                <!-- Map (Embed) -->
+                <div class="md:col-span-1">
+                    <h2 class="text-xl font-semibold mb-4">Location</h2>
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.67890123456!2d174.776981!3d-41.284592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d38ad5c53ee3a07%3A0xa40b5de854642bcd!2s110%20Lambton%20Quay%2C%20Wellington%2C%206011%2C%20New%20Zealand!5e0!3m2!1sen!2sus!4v1630900000000!5m2!1sen!2sus" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Social Media Links -->
+                <div class="md:col-span-1">
+                    <h2 class="text-xl font-semibold mb-4">Follow Us</h2>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-white hover:text-blue-400"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white hover:text-blue-400"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright Statement -->
+            <div class="text-center mt-6">
+                <p class="text-sm">&copy; 2023 Your Company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

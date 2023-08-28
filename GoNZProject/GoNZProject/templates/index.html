@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Book List{% endblock %}
+{% block content %} 
+
+
+<div class="bg-gray-100 py-2">
+<section >
+    <div class="container mx-auto text-center px-2">
+        <span class=" font-semibold mt-4 text-2xl">Welcome to GoNZ Travel Adventures
+            <p class="text-gray-600 mb-0 text-sm">Your Gateway to New Zealand Exploration!</p>
+        </span>
+        <section class="bg-gray-100 py-2 w-full flex flex-wrap gap-10 justify-center">  
+                    <img src="{% static 'images/SampleTourImages/2.jpg' %}" alt="main image" class="w-full h-[400px]">
+
+        </section>
+    
+        <p class="text-gray-600 mb-6 text-justify">Are you ready to embark on a journey of a lifetime through the captivating landscapes of New Zealand? Look no further than GoNZ Travel Adventures! Our passion for exploration and our deep love for this stunning country have driven us to create a platform that brings you the very best of travel experiences in Aotearoa.</p>
+        
+      
+       
+    </div>
+</section>
+
+<section class="container mx-auto my-8">
+    <h2 class="text-2xl font-semibold mb-4">Tours for Adventure, Beauty, and Exploration</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-md shadow-md">
+            <h3 class="text-xl font-semibold mb-2">Adventure Tours</h3>
+            <p class="text-gray-600 mb-4">Embark on thrilling adventures and experience the adrenaline rush in New Zealand's stunning landscapes.</p>
+            <a href="{% url 'tours' %}"  class="text-blue-600 hover:underline">View Adventure Tours &rarr;</a>
+        </div>
+        <div class="bg-white p-6 rounded-md shadow-md">
+            <h3 class="text-xl font-semibold mb-2">Beauty Tours</h3>
+            <p class="text-gray-600 mb-4">Explore the natural beauty of New Zealand's mountains, lakes, and picturesque scenery.</p>
+            <a href="{% url 'tours' %}"  class="text-blue-600 hover:underline">View Beauty Tours &rarr;</a>
+        </div>
+        <div class="bg-white p-6 rounded-md shadow-md">
+            <h3 class="text-xl font-semibold mb-2">Exploration Tours</h3>
+            <p class="text-gray-600 mb-4">Immerse yourself in the rich culture and history of New Zealand while discovering hidden gems.</p>
+            <a href="{% url 'tours' %}"  class="text-blue-600 hover:underline">View Exploration Tours &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<section class="bg-gray-200 py-12">
+    <div class="container mx-auto text-center">
+        <h2 class="text-2xl font-semibold mb-4 ">Featured Tour Packages</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-md shadow-md">
+                <h3 class="text-xl font-semibold mb-2">Basic Tours</h3>
+                <p class="text-gray-600 mb-4">Embark on thrilling adventures and experience the adrenaline rush in New Zealand's stunning landscapes.</p>
+                <a href="{% url 'tours' %}" class="text-blue-600 hover:underline">View Basic Tours &rarr;</a>
+                
+            </div>
+            <div class="bg-white p-6 rounded-md shadow-md">
+                <h3 class="text-xl font-semibold mb-2">Platinum Tours</h3>
+                <p class="text-gray-600 mb-4">Explore the natural beauty of New Zealand's mountains, lakes, and picturesque scenery.</p>
+                <a href="{% url 'tours' %}" class="text-blue-600 hover:underline">View Platinum Tours &rarr;</a>
+            </div>
+            <div class="bg-white p-6 rounded-md shadow-md">
+                <h3 class="text-xl font-semibold mb-2">Gold Tours</h3>
+                <p class="text-gray-600 mb-4">Immerse yourself in the rich culture and history of New Zealand while discovering hidden gems.</p>
+                <a href="{% url 'tours' %}" class="text-blue-600 hover:underline">View Gold Tours &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-gray-100 py-12">
+    <div class="container mx-auto text-center px-2">
+        <h3 class="text-xl font-semibold mb-4 ">Our Mission</h3>
+        <p class="text-gray-600 mb-6 text-justify">At GoNZ, we believe that a journey is not just about the destination, but about the entire experience. Our dedicated team of travel enthusiasts is committed to curating exceptional trips that immerse you in the rich culture, breathtaking scenery, and unique adventures that New Zealand has to offer.</p>
+        
+        <h3 class="text-xl font-semibold mb-4">Why Choose GoNZ?</h3>
+        <ul style="list-style-type: disc; margin-left: 1rem;" class="text-gray-600 mb-6 text-justify px-10">
+            <li class="mb-2">Expertise: With years of experience in crafting travel itineraries, we have gained an in-depth understanding of New Zealand's hidden gems and iconic landmarks.</li>
+            <li class="mb-2">Tailored Experiences: Our diverse range of meticulously designed itineraries caters to your preferences, whether you're seeking thrilling adventures, connecting with nature, or diving into local cultures.</li>
+            <li class="mb-2">Local Connections: Immerse yourself in local life, savor traditional cuisines, and engage in activities that truly embody the spirit of the land.</li>
+            <li class="mb-2">Sustainable Travel: Our eco-conscious approach ensures that your adventures leave a positive impact on the environment and local communities.</li>
+            <li class="mb-2">Unforgettable Memories: Your journey with GoNZ will be truly extraordinary, creating memories that last a lifetime.</li>
+            <li>Hassle-Free Planning: Our user-friendly platform and dedicated support team take care of all the logistics.</li>
+        </ul>
+        
+        
+        
+        <p class="text-gray-600 mb-6">Join us on a journey of discovery and wonder as we unveil the enchanting beauty of New Zealand. Let GoNZ Travel Adventures be your trusted companion in exploring this land of endless possibilities. Get ready to ignite your spirit of adventure and create cherished memories that will last a lifetime. Your Kiwi odyssey starts now - start exploring with GoNZ today!</p>
+        
+        <a href="{% url 'users-list' %}" class="text-blue-600 hover:underline">Contact Us to Start Your Adventure &rarr;</a>
+    </div>
+</section>
+</div>
+{% endblock %}
